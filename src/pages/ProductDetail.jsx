@@ -1,25 +1,22 @@
 import React from "react";
 import { IoMdHome } from "react-icons/io";
-import { Link } from "react-router-dom";
-import SlidViews from "../components/common/SlidViews";
-import Progress from "../components/common/Progress";
-import StarRating from "../components/common/StarRating";
+import { Link, useParams } from "react-router-dom";
 import AvatarInfor from "../components/common/AvatarInfor";
+import Progress from "../components/common/Progress";
+import SlidViews from "../components/common/SlidViews";
+import StarRating from "../components/common/StarRating";
 
-function ProductDetail() {
-  const images = [
-    "https://preview.colorlib.com/theme/cozastore/images/product-detail-01.jpg.webp",
-    "https://preview.colorlib.com/theme/cozastore/images/product-detail-02.jpg.webp",
-    "https://preview.colorlib.com/theme/cozastore/images/product-detail-03.jpg.webp",
-  ];
+function ProductDetail({ productList }) {
+  const { productId } = useParams();
+  const product = productList.find((p) => p.id === parseInt(productId));
 
   return (
     <div>
       <div className="flex justify-between w-full rounded-lg  items-center p-5 bg-base-100">
-        <h1 className="text-xl font-semibold">Products List</h1>
+        <h1 className="text-xl font-semibold">Product Detail</h1>
         <div className="flex gap-2 items-center">
           <Link>
-            <div className="rounded-lg px-4 py-2 flex bg-gray-100">
+            <div className="rounded-lg px-4 py-2 gap-2 flex bg-gray-100">
               <IoMdHome className="w-6 h-6" />
               <span className="font-medium">Dashboard</span>
             </div>
@@ -27,7 +24,7 @@ function ProductDetail() {
           <span className="font-bold text-xl"> ~ </span>
           <Link>
             <div className="rounded-lg px-4 py-2 flex bg-gray-100">
-              <span className="font-medium">Products</span>
+              <span className="font-medium">productList</span>
             </div>
           </Link>
           <span className="font-bold text-xl"> ~ </span>
@@ -42,12 +39,14 @@ function ProductDetail() {
         <div className="flex gap-8">
           <div className="w-3/6 rounded-lg">
             <h1 className="text-xl font-medium ">Product Gallery</h1>
-            <SlidViews images={images} />
+            <SlidViews images={product.photos} />
           </div>
           <div className="w-3/6">
-            <h1 className="text-xl font-medium ">Product Detail</h1>
+            <h1 className="text-xl font-medium ">
+              Product Detail {product.title}
+            </h1>
             <h2 className="text-lg font-medium text-gray-500 mt-2">
-              Formal suits for men wedding slim fit 3 piece
+              {product.paragraph}
             </h2>
             <div className="p-5">
               <div className=" flex items-center gap-2 md:gap-4 ">
@@ -58,7 +57,7 @@ function ProductDetail() {
                 </div>
                 <div className="w-4/5 ">
                   <span className="font-medium text-lg text-gray-500 ">
-                    ZaRa
+                    {product.brand}
                   </span>
                 </div>
               </div>
@@ -70,8 +69,7 @@ function ProductDetail() {
                 </div>
                 <div className="w-4/5 flex gap-2 ">
                   <span className="rounded-lg px-2 py-1 flex bg-gray-100">
-                    {" "}
-                    Men's
+                    {product.category}
                   </span>
                 </div>
               </div>
@@ -131,7 +129,6 @@ function ProductDetail() {
                     L
                   </span>
                   <span className="rounded-lg px-2 py-1 flex bg-gray-100">
-                    
                     XL
                   </span>
                 </div>
@@ -144,8 +141,7 @@ function ProductDetail() {
                 </div>
                 <div className="w-4/5 ">
                   <span className="font-medium text-gray-500 text-lg ">
-                    
-                    $25.00
+                    {product.price}
                   </span>
                 </div>
               </div>
@@ -157,7 +153,7 @@ function ProductDetail() {
                 </div>
                 <div className="w-4/5 mt-2">
                   <span className="font-medium text-lg text-gray-500">
-                    0.3 reviews
+                    {product.rating} reviews
                   </span>
                 </div>
               </div>
@@ -221,7 +217,7 @@ function ProductDetail() {
             <h1 className="font-bold text-8xl text-gray-600 text-center">
               3.8
             </h1>
-            <StarRating rating={4}  className="w-10 h-10"/>
+            <StarRating rating={product.rating} className="w-10 h-10" />
             <p className="text-sm text-center py-3 font-medium text-gray-600">
               Your Average Rating Star
             </p>
@@ -234,54 +230,75 @@ function ProductDetail() {
         <div className="bg-gray-100 shadow-md shadow-gray-400 w-full p-8 mt-10 rounded-lg">
           <div className="flex justify-between items-center">
             <div>
-              <AvatarInfor nameProfile={"Rothmony"} timePost={"22 minuted ago"} photosProfile={"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}/>
-              <StarRating rating={4} className="w-5 h-5"  />
+              <AvatarInfor
+                nameProfile={"Rothmony"}
+                timePost={"22 minuted ago"}
+                photosProfile={
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
+              />
+              <StarRating rating={4} className="w-5 h-5" />
             </div>
             <div>
               <button className="btn btn-primary">Reply</button>
             </div>
           </div>
           <div>
-            <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                 ex ea commodo consequat.
+            <p className="mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </div>
         <div className="bg-gray-100 shadow-md shadow-gray-400 w-[80%] ml-auto p-8 mt-10 rounded-lg">
           <div className="flex justify-between items-center">
             <div>
-              <AvatarInfor nameProfile={"Rothmony"} timePost={"22 minuted ago"} photosProfile={"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}/>
-              <StarRating rating={4} className="w-5 h-5"  />
+              <AvatarInfor
+                nameProfile={"Rothmony"}
+                timePost={"22 minuted ago"}
+                photosProfile={
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
+              />
+              <StarRating rating={4} className="w-5 h-5" />
             </div>
             <div>
               <button className="btn btn-primary">Reply</button>
             </div>
           </div>
           <div>
-            <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                 ex ea commodo consequat.
+            <p className="mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </div>
         <div className="bg-gray-100 shadow-md shadow-gray-400 w-full p-8 mt-10 rounded-lg">
           <div className="flex justify-between items-center">
             <div>
-              <AvatarInfor nameProfile={"Rothmony"} timePost={"22 minuted ago"} photosProfile={"https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"}/>
-              <StarRating rating={4} className="w-5 h-5"  />
+              <AvatarInfor
+                nameProfile={"Rothmony"}
+                timePost={"22 minuted ago"}
+                photosProfile={
+                  "https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp"
+                }
+              />
+              <StarRating rating={4} className="w-5 h-5" />
             </div>
             <div>
               <button className="btn btn-primary">Reply</button>
             </div>
           </div>
           <div>
-            <p className="mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                 ex ea commodo consequat.
+            <p className="mt-2">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat.
             </p>
           </div>
         </div>
@@ -291,9 +308,11 @@ function ProductDetail() {
         </div>
         <textarea
           placeholder="Write here"
-          className="textarea textarea-bordered mt-10 w-full h-48">
-        </textarea>
-        <button className="btn btn-primary w-full mt-4">DROP YOUR REPLY</button>
+          className="textarea textarea-bordered mt-10 w-full h-48"
+        ></textarea>
+        <button className="btn btn-lg btn-primary w-full mt-4">
+          DROP YOUR REPLY
+        </button>
       </div>
     </div>
   );

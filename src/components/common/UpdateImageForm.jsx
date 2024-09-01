@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
-import { FaCloudUploadAlt } from "react-icons/fa";
 
 const ImageUploadForm = () => {
   const [images, setImages] = useState([]);
@@ -33,7 +32,10 @@ const ImageUploadForm = () => {
       </label>
       <div className="flex flex-wrap items-center gap-6 ">
         {images.map((image) => (
-          <div key={image.id} className="relative w-44 rounded-lg shadow-lg h-44 ">
+          <div
+            key={image.id}
+            className="relative w-44 rounded-lg shadow-lg h-44 "
+          >
             <img
               src={image.id}
               alt="Uploaded"
@@ -54,13 +56,6 @@ const ImageUploadForm = () => {
           <input type="file" className="hidden" onChange={handleFileChange} />
         </label>
       </div>
-      <button
-        type="submit"
-        className="mt-4 px-4 w-full flex items-center justify-center gap-2 py-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
-      >
-        <FaCloudUploadAlt className="w-7 h-7" />
-        <h1>Update Images</h1>
-      </button>
     </form>
   );
 };

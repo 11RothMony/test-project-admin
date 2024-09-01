@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import Logo from "../components/common/Logo";
 
@@ -37,7 +37,10 @@ function Login() {
                 required
               />
               <label className="label">
-                <a href="#" className="label-text-alt text-red-600 text-sm link link-hover">
+                <a
+                  href="#"
+                  className="label-text-alt text-red-600 text-sm link link-hover"
+                >
                   Forgot password?
                 </a>
               </label>
@@ -57,12 +60,14 @@ function Login() {
           </form>
         </div>
         <div className="mt-2 card bg-base-100 w-96 max-w-sm shrink-0 shadow-2xl">
-            <div className="flex justify-center py-3 gap-2 items-center">
-               <p>Don't have an account</p>
-               <Link to='/register'>
-                  <span className="text-blue-600 text-lg font-semibold">Register</span>
-               </Link>
-            </div>
+          <div className="flex justify-center py-3 gap-2 items-center">
+            <p>Don't have an account</p>
+            <Link to="/register">
+              <span className="text-blue-600 text-lg font-semibold">
+                Register
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

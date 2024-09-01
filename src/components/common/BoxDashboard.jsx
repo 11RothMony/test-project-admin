@@ -1,6 +1,7 @@
 import { FaShoppingCart, FaUserAlt, FaShoppingBag } from "react-icons/fa";
 import { GiStarsStack } from "react-icons/gi";
 import { CiMenuKebab } from "react-icons/ci";
+import { BiTrendingUp } from "react-icons/bi";
 const  BoxDashboard=({title, gradient, number, percentage, icon})=>{
 
     // Define your Tailwind gradient classes based on the props
@@ -23,9 +24,13 @@ const  BoxDashboard=({title, gradient, number, percentage, icon})=>{
       const SelectedIcon = iconMap[icon] || iconMap[' '];
 
     return(
-        <div className={` ${selectedGradientClass} rounded-xl  p-4 w-[340px] h-44 relative`}>
+        <div className={` ${selectedGradientClass} rounded-xl  p-4 w-[350px] h-44 relative`}>
             <h3 className="font-medium text-lg text-white">{title}</h3>
             <h1 className="font-bold text-2xl text-white">{number}</h1>
+            <div className="absolute left-20 top-6 p-6 ">
+                {/* <FaShoppingCart className="w-6 h-6" /> */}
+                <BiTrendingUp className="w-32 h-32 text-black text-opacity-5 "/>
+            </div>
             <div className=" flex items-center gap-1 absolute bottom-3 ">     
                 <p className="bg-gray-500 text-white bg-opacity-30 rounded-lg text-sm p-1">++{percentage}%</p>
                 <p className="text-white text-sm">Last Month</p>

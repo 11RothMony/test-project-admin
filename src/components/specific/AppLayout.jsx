@@ -11,7 +11,7 @@ function AppLayout() {
       </div>
       <div className="w-4/5 flex-wrap h-full">
           <Header />
-        <main className="bg-gray-100 rounded-lg h-[calc(100%_-_80px)] mt-[80px]  p-7 fixed overflow-y-scroll  w-4/5 overflow-x-hidden ">
+        <main className="bg-gray-100 rounded-lg h-[calc(100%_-_80px)] mt-[80px]  p-7 fixed overflow-y-scroll overflow-x-hidden  w-4/5 ">
           <Outlet />
         </main>
       </div>

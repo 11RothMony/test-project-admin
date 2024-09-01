@@ -19,3 +19,25 @@ code {
   .btn-outline:hover {
     background-color: rgba(128, 128, 128, 0);
   }}
+  .table td {
+    @apply border-t text-gray-500 text-base font-medium py-2  px-4;
+  }
+  p {
+    @apply text-base text-gray-900 font-medium
+  }
+  .btn {
+    height: 40px;
+     min-height: 40px;
+  }
+  .menu li > details > summary:active {
+    --tw-bg-opacity: 1;
+    background-color: oklch(1 0 0 / 0);
+    --tw-text-opacity: 1;
+    color: oklch(0.57 0 0);
+}
+.menu li > *:not(ul, .menu-title, details, .btn):active, .menu li > *:not(ul, .menu-title, details, .btn).active, .menu li > details > summary:active {
+  --tw-bg-opacity: 1;
+  background-color: oklch(1 0 0 / 0);
+  --tw-text-opacity: 1;
+  color: oklch(0.53 0.01 0);
+}

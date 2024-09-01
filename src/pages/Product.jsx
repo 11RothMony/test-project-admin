@@ -4,22 +4,22 @@ import { IoMdHome } from "react-icons/io";
 import { Link } from "react-router-dom";
 import BoxProduct from "../components/common/BoxProduct";
 
-function Product() {
+function Product({productList}) {
   return (
     <div>
       <div className="flex justify-between w-full rounded-lg  items-center p-5 bg-base-100">
         <h1 className="text-xl font-semibold">Products List</h1>
         <div className="flex gap-2 items-center">
           <Link>
-            <div className="rounded-lg px-4 py-2 flex bg-gray-100">
+            <div className="rounded-lg px-4 py-2 gap-2 flex bg-gray-100">
               <IoMdHome className="w-6 h-6" />
-              <span>Dashboard</span>
+              <span className="font-medium">Dashboard</span>
             </div>
           </Link>
           <span className="font-bold text-xl"> ~ </span>
           <Link>
             <div className="rounded-lg px-4 py-2 flex bg-gray-100">
-              <span>Products</span>
+              <span className="font-medium">Products</span>
             </div>
           </Link>
         </div>
@@ -44,7 +44,7 @@ function Product() {
           gradient="blueToPurplew"
         />
       </div>
-      <ProductTable/>
+      <ProductTable products={productList}/>
     </div>
   );
 }

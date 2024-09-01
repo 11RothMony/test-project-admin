@@ -4,12 +4,12 @@ import { FaShoppingCart } from "react-icons/fa";
 import { HiBellAlert } from "react-icons/hi2";
 import { MdOutlineMenuOpen } from "react-icons/md";
 import { RiMessage2Fill } from "react-icons/ri";
-import Search from "../common/Search";
 import { Link } from "react-router-dom";
+import Search from "../common/Search";
 
 function Header() {
 
-  const [isLogin, setIsLogin] = useState(true);
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <div className="flex justify-between h-[80px] p-5 items-center w-4/5 bg-base-100 fixed z-40">
       <div className="flex gap-5 ">
@@ -18,18 +18,15 @@ function Header() {
         </button>
         <Search />
       </div>
-      <div className="flex gap-3 ">
-        <button className="bg-gray-100 w-12 h-12 flex justify-center items-center rounded-full">
-          <CgDarkMode className="w-6 h-6" />
-        </button>
-        <button className="bg-gray-100 w-12 h-12 flex justify-center items-center rounded-full">
+      <div className="flex gap-3 items-center ">
+        <button className="bg-gray-100 w-12 h-12 flex hover:bg-gray-200 justify-center items-center rounded-full">
           <FaShoppingCart className="w-6 h-6" />
         </button>
-        <button className="bg-gray-100 w-12 h-12 flex justify-center items-center rounded-full">
+        <button className="bg-gray-100 w-12 h-12 flex hover:bg-gray-200 justify-center items-center rounded-full">
           <RiMessage2Fill className="w-6 h-6" />
         </button>
         <div className="dropdown dropdown-end">
-          <button tabIndex={0} className="bg-gray-100 rounded-full p-3">
+          <button tabIndex={0} className="bg-gray-100 hover:bg-gray-200 rounded-full p-3">
             <HiBellAlert className="w-6 h-6" />
           </button>
           <ul
@@ -41,7 +38,7 @@ function Header() {
               <hr></hr>
             </div>
             <li>
-              <div className="flex mt-3 rounded-none bg-gray-100">
+              <div className="flex mt-3 border border-gray-300 rounded-lg bg-gray-100">
                 <div className=" w-16 p-0.5 h-10 rounded-full border mb-7 border-blue-600 ">
                   <img
                     src="https://t4.ftcdn.net/jpg/04/30/11/17/360_F_430111702_DcBX4q0VE9CZZzyMG42FzoXHdHwM7SfA.jpg"
@@ -58,7 +55,7 @@ function Header() {
               </div>
             </li>
             <li>
-              <div className="flex rounded-none bg-gray-100">
+              <div className="flex border border-gray-300 rounded-lg mt-1 bg-gray-100">
                 <div className=" w-16 p-0.5 h-10 rounded-full border mb-7 border-blue-600 ">
                   <img
                     src="https://t4.ftcdn.net/jpg/04/30/11/17/360_F_430111702_DcBX4q0VE9CZZzyMG42FzoXHdHwM7SfA.jpg"
@@ -75,7 +72,7 @@ function Header() {
               </div>
             </li>
             <li>
-              <div className="flex rounded-none bg-gray-100">
+              <div className="flex border border-gray-300 rounded-lg mt-1  bg-gray-100">
                 <div className=" w-16 p-0.5 h-10 rounded-full border mb-7 border-blue-600 ">
                   <img
                     src="https://t4.ftcdn.net/jpg/04/30/11/17/360_F_430111702_DcBX4q0VE9CZZzyMG42FzoXHdHwM7SfA.jpg"
@@ -91,6 +88,8 @@ function Header() {
                 </div>
               </div>
             </li>
+            <button className="btn btn-primary w-full mt-1">Views all</button>
+
           </ul>
         </div>
         {
