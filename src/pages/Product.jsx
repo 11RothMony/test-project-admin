@@ -4,7 +4,7 @@ import { IoMdHome } from "react-icons/io";
 import { Link } from "react-router-dom";
 import BoxProduct from "../components/common/BoxProduct";
 
-function Product({productList}) {
+function Product() {
   return (
     <div>
       <div className="flex justify-between w-full rounded-lg  items-center p-5 bg-base-100">
@@ -44,7 +44,7 @@ function Product({productList}) {
           gradient="blueToPurplew"
         />
       </div>
-      <ProductTable products={productList}/>
+      <ProductTable/>
     </div>
   );
 }

@@ -1,89 +1,123 @@
-import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import axios from "axios";
+import React, { useEffect, useState, useContext } from "react";
+import { FaCloudUploadAlt } from "react-icons/fa";
+import { useParams,  useNavigate } from "react-router-dom";
 import InputForm from "../components/common/InputForm";
-import Textarea from "../components/common/TextareaForm";
 import SelectForm from "../components/common/SelectForm";
 import StarRating from "../components/common/StarRating";
+import Textarea from "../components/common/TextareaForm";
 import UpdateImageForm from "../components/common/UpdateImageForm";
-import { FaCloudUploadAlt } from "react-icons/fa";
+import { ProductContext } from "../components/specific/ProductContext";
 
-const EditProduct = ({ products, setProducts }) => {
+const EditProduct = () => {
   const { id } = useParams(); // Get the product ID from the URL
-  const [product, setProduct] = useState(null);
+  const navigate = useNavigate(); // For redirecting after successful update
+  const { updateProduct } = useContext(ProductContext); // Get context to update product
+  //const [product, setProduct] = useState(null);
+
+  // useEffect(() => {
+  //   // Find the product by ID when the component loads
+  //   const foundProduct = products.find((p) => p.id === parseInt(id));
+  //   setProduct(foundProduct);
+  // }, [id, products]);
+
+  // if (!product) {
+  //   return <div>Loading...</div>;
+  // }
+  const [formData, setFormData] = useState({
+    title: "",
+    paragraph: "",
+    // Other fields...
+  });
 
   useEffect(() => {
-    // Find the product by ID when the component loads
-    const foundProduct = products.find((p) => p.id === parseInt(id));
-    setProduct(foundProduct);
-  }, [id, products]);
+    axios.get(`http://127.0.0.1:8000/api/products/${id}`).then((response) => {
+      setFormData(response.data);
+    });
+  }, [id]);
 
-  if (!product) {
-    return <div>Loading...</div>;
-  }
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios.put(`http://127.0.0.1:8000/api/products/${id}`, formData).then((response) => {
+      console.log("Product Updated:", response.data);
+      updateProduct(response.data); // Update the product globally
+       // Redirect to the product list page
+       navigate("/product");
+    });
+  };
 
   return (
     <div className="w-full gap-5 mt-5 p-5 rounded-lg bg-base-100">
       <h1 className="text-xl font-semibold">Edit Information</h1>
-      <form action="">
+      <form onSubmit={handleSubmit} >
       <InputForm
+        name="title"
         className="w-full"
         title="TITLE"
-        value={product.title} // Use value here
-        onChange={(e) => setProduct({ ...product, title: e.target.value })} // Handle the change
+        value={formData.title} // Use value here
+        onChange={handleChange}
       />
         <Textarea
           className="w-full h-48"
           title="DESCRIPTION"
-          value={product.paragraph}
-          onChange={(e) =>
-            setProduct({ ...product, paragraph: e.target.value })
-          }
+          name="paragraph"
+          value={formData.paragraph}
+          onChange={handleChange}
         />
         <div className="grid grid-rows-3 grid-flow-col gap-3">
           <InputForm
             title="PRICE"
+            name="price"
             className="w-full"
-            value={product.price}
-            onChange={(e) => setProduct({ ...product, price: e.target.value })}
+            value={formData.price}
+            onChange={handleChange}
           />
           <InputForm
             title="OLD PRICE"
             className="w-full"
-            defaultValue={(product.price * 1.1).toFixed(2)}
+            value={(formData.price * 1.1).toFixed(2)}
           />
           <SelectForm
             title="CATEGORY"
+            name="category"
             className="w-full"
-            defaultValue={product.category}
-            onChange={(e) =>
-              setProduct({ ...product, category: e.target.value })
-            }
+            value={formData.category}
+            onChange={handleChange}
           />
           <InputForm
-            title="PRODUCT STOCK"
+            title="formData STOCK"
+            name="stock"
             className="w-full"
-            defaultValue={product.stock}
-            onChange={(e) => setProduct({ ...product, stock: e.target.value })}
+            value={formData.stock}
+            onChange={handleChange}
           />
           <InputForm
             title="BRAND"
+            name="brand"
             className="w-full"
-            defaultValue={product.brand}
-            onChange={(e) => setProduct({ ...product, brand: e.target.value })}
+            value={formData.brand}
+            onChange={handleChange}
           />
         </div>
         <div className="mt-4">
           <h1 className="text-lg font-semibold">Ratings</h1>
           <StarRating
-            rating={product.rating}
+            rating={formData.rating}
+            name="rating"
             className="w-5 h-5"
-            onChange={(rating) => setProduct({ ...product, rating })}
+            onChange={handleChange}
           />
         </div>
         <div className="w-full gap-5 mt-5 p-5 rounded-lg bg-base-100">
           <UpdateImageForm
-            defaultPhotos={product.photos}
-            onChange={(photos) => setProduct({ ...product, photos })}
+            defaultPhotos={formData.photos}
+            onChange={handleChange}
           />
         </div>
         <button
@@ -98,3 +132,4 @@ const EditProduct = ({ products, setProducts }) => {
   );
 };
 export default EditProduct;
+// { products, setProducts }

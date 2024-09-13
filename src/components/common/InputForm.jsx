@@ -1,4 +1,4 @@
-const InputForm = ({ title, value, onChange, className = "" }) => {
+const InputForm = ({ title, value, onChange, className = "", name }) => {
   return (
     <div>
       <label className="form-control w-full">
@@ -6,6 +6,7 @@ const InputForm = ({ title, value, onChange, className = "" }) => {
           <span className="label-text text-base font-medium">{title}</span>
         </div>
         <input
+          name={name}
           type="text"
           value={value} // Use value instead of defaultValue
           onChange={onChange} // Handle changes with onChange

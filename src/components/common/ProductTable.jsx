@@ -1,11 +1,37 @@
+import React, { useContext } from "react";
 import { FaEye, FaPen } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { ProductContext } from "../specific/ProductContext";
 import Search from "./Search";
 import SelectForm from "./SelectForm";
 import StarRating from "./StarRating";
+import axios from "axios";
 
-const ProductTable = ({ products }) => {
+const ProductTable = () => {
+  // Access products and setProducts from context once
+  const { products, setProducts } = useContext(ProductContext); 
+
+  // Function to handle product deletion
+  const handleDelete = (productId) => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      axios
+        .delete(`http://127.0.0.1:8000/api/products/${productId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            // Remove the deleted product from the state
+            setProducts((prevProducts) =>
+              prevProducts.filter((product) => product.id !== productId)
+            );
+            console.log(`Product with ID ${productId} deleted`);
+          }
+        })
+        .catch((error) => {
+          console.error("There was an error deleting the product!", error);
+        });
+    }
+  };
+
   return (
     <div>
       <div className="bg-base-100 mt-5 shadow-gray-300 shadow-lg rounded-lg">
@@ -35,8 +61,9 @@ const ProductTable = ({ products }) => {
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => (
-                <tr key={index}>
+              {products &&  products.length > 0 ? (
+              products.map((product,index) => (
+                <tr  key={product.id}>
                   <th>{product.id}</th>
                   <td className="h-24">
                     <div className="flex items-center gap-3">
@@ -72,7 +99,7 @@ const ProductTable = ({ products }) => {
                     <del>${(product.price * 1.1).toFixed(2)}</del>
                     <br />
                     <span className="text-red-500">
-                      ${product.price.toFixed(2)}
+                      ${product.price}
                     </span>
                   </td>
                   <td>{product.stock}</td>
@@ -90,16 +117,23 @@ const ProductTable = ({ products }) => {
                       </Link>
                       <Link to={`/edit-product/${product.id}`}>
                         <button className="btn bg-blue-300 p-2">
-                          <FaPen className="w-4 h-4" />
+                          <FaPen className="w-4 h-4"/>
                         </button>
                       </Link>
-                      <button className="btn bg-red-300 p-2">
+                      <button onClick={() => handleDelete(product.id)} className="btn bg-red-300 p-2">
                         <MdDelete className="w-4 h-4" />
                       </button>
                     </div>
                   </td>
                 </tr>
-              ))}
+              ))
+            ):(
+              <tr>
+                <td colSpan="10" className="text-center p-5">
+                  No products available
+                </td>
+              </tr>
+            )}
             </tbody>
             <tfoot className="h-14">
               <tr>

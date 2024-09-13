@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
-const ImageUploadForm = () => {
+const ImageUploadForm = ({name, onChange}) => {
   const [images, setImages] = useState([]);
 
-  // Handle file selection
+  // Handle file selection 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
     const updatedImages = files.map((file) => ({
@@ -26,7 +26,7 @@ const ImageUploadForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 p-4">
+    <div className="space-y-4 p-4">
       <label className="block py-5 text-xl font-medium text-gray-700">
         Media And Published
       </label>
@@ -53,10 +53,10 @@ const ImageUploadForm = () => {
         <label className="flex flex-col items-center px-4 py-6 w-44 h-44 bg-white text-blue-500 rounded-lg shadow-lg tracking-wide uppercase border border-blue cursor-pointer hover:bg-blue-500 hover:text-white">
           <MdOutlineAddPhotoAlternate className="text-4xl mt-6" /> {/* Icon */}
           <span className="mt-5 text-base leading-normal">Select a file</span>
-          <input type="file" className="hidden" onChange={handleFileChange} />
+          <input type="file" name={name} className="hidden" onChange={handleFileChange}/>
         </label>
       </div>
-    </form>
+      </div>
   );
 };
 

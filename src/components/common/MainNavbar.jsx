@@ -32,7 +32,7 @@ function MainSidebar() {
                   <a>Product List</a>
                 </li>
               </Link>
-              <Link to="/product-detail/2">
+              <Link to="/product-detail/12">
                 <li>
                   <a>Product Detail</a>
                 </li>

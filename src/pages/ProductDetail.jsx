@@ -1,14 +1,16 @@
-import React from "react";
+import React,{useContext} from "react";
 import { IoMdHome } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import AvatarInfor from "../components/common/AvatarInfor";
 import Progress from "../components/common/Progress";
 import SlidViews from "../components/common/SlidViews";
 import StarRating from "../components/common/StarRating";
+import { ProductContext } from "../components/specific/ProductContext";
 
-function ProductDetail({ productList }) {
+function ProductDetail() {
+   const { products } = useContext(ProductContext);
   const { productId } = useParams();
-  const product = productList.find((p) => p.id === parseInt(productId));
+  const product = products.find((p) => p.id === parseInt(productId));
 
   return (
     <div>
@@ -165,7 +167,7 @@ function ProductDetail({ productList }) {
                 </div>
                 <div className="w-4/5 mt-2">
                   <span className="font-medium text-lg text-gray-500">
-                    50 items
+                  {product.stock}items
                   </span>
                 </div>
               </div>
@@ -177,8 +179,7 @@ function ProductDetail({ productList }) {
                 </div>
                 <div className="w-4/5 mt-2">
                   <span className="font-medium text-lg text-gray-500">
-                    {" "}
-                    02 Feb 2024
+                  {product.updated_at}
                   </span>
                 </div>
               </div>
