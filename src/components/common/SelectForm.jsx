@@ -7,12 +7,14 @@ const SelectForm = ({title,name, className="", onChange}) => {
         </div>
         <select onChange={onChange} name={name} className={`select select-bordered ${className}`}>
           <option disabled selected>
-            Pick one
+            Choose Category
           </option>
-          <option>Harry</option>
-          <option>Lord</option>
-          <option>Planet</option>
-          <option>Star</option>
+          <option>Women</option>
+          <option>Men</option>
+          <option>Bags</option>
+          <option>Bells</option>
+          <option>Shoes</option>
+          <option>Watches</option>
         </select>
       </label>
     </div>

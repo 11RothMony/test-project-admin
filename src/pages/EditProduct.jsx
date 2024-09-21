@@ -13,21 +13,17 @@ const EditProduct = () => {
   const { id } = useParams(); // Get the product ID from the URL
   const navigate = useNavigate(); // For redirecting after successful update
   const { updateProduct } = useContext(ProductContext); // Get context to update product
-  //const [product, setProduct] = useState(null);
-
-  // useEffect(() => {
-  //   // Find the product by ID when the component loads
-  //   const foundProduct = products.find((p) => p.id === parseInt(id));
-  //   setProduct(foundProduct);
-  // }, [id, products]);
-
-  // if (!product) {
-  //   return <div>Loading...</div>;
-  // }
   const [formData, setFormData] = useState({
     title: "",
     paragraph: "",
-    // Other fields...
+    category: "",
+    brand: "",
+    price: "",
+    stock: "",
+    rating: "",
+    order: "",
+    sales: "",
+    photos: []
   });
 
   useEffect(() => {
@@ -118,6 +114,7 @@ const EditProduct = () => {
           <UpdateImageForm
             defaultPhotos={formData.photos}
             onChange={handleChange}
+            name={"photos"}
           />
         </div>
         <button

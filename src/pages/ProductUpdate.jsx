@@ -3,7 +3,6 @@ import { IoMdHome } from "react-icons/io";
 import { Link, useNavigate } from "react-router-dom";
 import InputForm from "../components/common/InputForm";
 import SelectForm from "../components/common/SelectForm";
-import StarRating from "../components/common/StarRating";
 import Textarea from "../components/common/TextareaForm";
 import UpdateImageForm from "../components/common/UpdateImageForm";
 import React, { useState, useContext } from "react";
@@ -24,7 +23,7 @@ function ProductCreate() {
     rating: "",
     order: "",
     sales: "",
-    photos: []
+    photos: ["https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1X-AN3kFs-XAzQU5uTMgBv7IXiWaT-L7zeQ&s","https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCloz5TjyiS5rNPwFn-CnRl6TnV0cnBWBlMQ&s"]
   });
 
   const handleChange = (e) => {
@@ -94,8 +93,8 @@ function ProductCreate() {
             <InputForm onChange={handleChange} title={"Rating"} name={"rating"} className="w-full" />
             <InputForm onChange={handleChange} title={"Sale"} name={"sales"} className="w-full" />
             <InputForm onChange={handleChange} title={"Order"} name={"order"} className="w-full" />
-            <SelectForm onChange={handleChange} title={"CATEGORY"} name={"category"} className="w-full" />
             <InputForm onChange={handleChange} title={"BRAND"} name={"brand"} className="w-full" />
+            <SelectForm onChange={handleChange} title={"CATEGORY"} name={"category"} className="w-full" />
           </div>
         </div>
         <div className="w-full gap-5 mt-5 p-5 rounded-lg bg-base-100">

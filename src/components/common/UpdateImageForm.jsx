@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MdOutlineAddPhotoAlternate } from "react-icons/md";
 
-const ImageUploadForm = ({name, onChange}) => {
+const ImageUploadForm = ({ name, onChange}) => {
   const [images, setImages] = useState([]);
 
   // Handle file selection 
@@ -11,18 +11,13 @@ const ImageUploadForm = ({name, onChange}) => {
       id: URL.createObjectURL(file), // Generate a temporary URL for preview
       file,
     }));
+    // Update the images state
     setImages((prevImages) => [...prevImages, ...updatedImages]);
   };
 
   // Handle image deletion
   const handleDeleteImage = (id) => {
     setImages(images.filter((image) => image.id !== id));
-  };
-
-  // Handle form submission (to be implemented based on your backend)
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Implement form submission logic here, e.g., send images to backend
   };
 
   return (

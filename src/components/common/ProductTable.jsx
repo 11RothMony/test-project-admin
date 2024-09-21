@@ -23,7 +23,6 @@ const ProductTable = () => {
             setProducts((prevProducts) =>
               prevProducts.filter((product) => product.id !== productId)
             );
-            console.log(`Product with ID ${productId} deleted`);
           }
         })
         .catch((error) => {
@@ -64,7 +63,7 @@ const ProductTable = () => {
               {products &&  products.length > 0 ? (
               products.map((product,index) => (
                 <tr  key={product.id}>
-                  <th>{product.id}</th>
+                  <th>{index+1}</th>
                   <td className="h-24">
                     <div className="flex items-center gap-3">
                       <div className="avatar">

@@ -41,3 +41,7 @@ code {
   --tw-text-opacity: 1;
   color: oklch(0.53 0.01 0);
 }
+.scroll-container {
+  overflow-y: scroll; /* Enable vertical scrolling */
+  scroll-behavior: smooth; /* Smooth scrolling */
+}
